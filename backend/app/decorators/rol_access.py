@@ -1,6 +1,6 @@
 from functools import wraps
 from flask_jwt_extended import get_jwt_identity
-from app.models import db
+from app.database import db
 from app.models.user import User
 from flask import jsonify
 

@@ -1,4 +1,4 @@
-from app.models import db
+from app.database import db
 from werkzeug.security import generate_password_hash, check_password_hash
 
 class User(db.Model):
@@ -21,8 +21,8 @@ class User(db.Model):
       self.password = password
     
     def __repr__(self):
-       return f"usuario {self.nombre}, email {self.email} , fecha de creacion {self.created_at} " 
-     
+        return f"usuario {self.nombre}, email {self.email} , fecha de creacion {self.created_at} " 
+
     def to_dict(self):
       return {
         'id':self.id,
