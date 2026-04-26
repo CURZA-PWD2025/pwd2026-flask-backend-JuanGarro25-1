@@ -1,12 +1,18 @@
 from dotenv import load_dotenv
 from flask import Flask
-from app.models import db
+from app.database import db
 from app.config import config
 from app.routes.user_routes import users
 from app.routes.rol_routes import roles
 from app.routes.auth_routes import auth_bp
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
+from app.routes.producto_routes import productos
+from app.routes.categoria_routes import categorias
+from app.routes.proveedor_routes import proveedores
+from app.routes.movimiento_stock_routes import movimientos
+
+
 
 load_dotenv(override = True)
 import os
@@ -20,12 +26,16 @@ def create_app():
     app.register_blueprint(users)
     app.register_blueprint(roles)
     app.register_blueprint(auth_bp)
-    
+    app.register_blueprint(productos)
+    app.register_blueprint(categorias)
+    app.register_blueprint(proveedores)
+    app.register_blueprint(movimientos)
+
     @app.route('/')
     @app.route('/<nombre>')    
     def home(nombre = None):
         if (nombre == None):
-            return f' <h1>Hola  desde programacion web dinamica 2026<h1>'
+            return f' <h1>Hola desde programacion web dinamica 2026<h1>'
         return f'Hola {nombre} te saludamos desde programacion web dinamica 2026'
 
     @app.route('/saludo')
